@@ -1,5 +1,3 @@
-syntax on
-
 set noerrorbells
 set tabstop
 set tabstop=2 softtabstop=2
@@ -14,10 +12,8 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set colorcolumn=80
 set linespace=15
 set number relativenumber
-set guifont=FiraCode-Retina:h16
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 
@@ -25,24 +21,39 @@ call plug#begin('~/config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-sensible'
+Plug 'zivyangll/git-blame.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'arcticicestudio/nord-vim'
 Plug 'vim-utils/vim-man'
 Plug 'pangloss/vim-javascript'
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nanotech/jellybeans.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'othree/yajs.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
-colorscheme nord
+" Backup / Swap {
+set nobackup
+set nowritebackup
+set noswapfile
+" }
+
+" Color Scheme {
+colorscheme jellybeans
+syntax on
+filetype plugin indent on
+let g:jellybeans_use_term_italics = 1
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+" }
 
 if executable('rg')
-    let g:rg_derive_root='true'
+  let g:rg_derive_root='true'
 endif
 
 let mapleader = " "
@@ -50,7 +61,6 @@ let g:netrw_browse_split = 2
 let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
-let g:ycm_python_binary_path = 'python3'
 
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -74,9 +84,18 @@ nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kk
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+" Escape Highlight searching via ESC
+nnoremap <esc> :noh<return><esc>
+
 let g:NERDTreeIgnore = ['^node_modules$']
 nmap <C-n> :NERDTreeToggle<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Ctrl + / for commenting on visual/normal mode
+nnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
+
+let g:NERDSpaceDelims = 1
 
 " coc config
  let g:coc_global_extensions = [
@@ -149,6 +168,10 @@ nmap <F2> <Plug>(coc-rename)
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" Git blame
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+
 
 augroup mygroup
   autocmd!
