@@ -2,13 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/joey/.oh-my-zsh"
+export ZSH="/Users/joey.colon/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+TERM=xterm
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -63,7 +64,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git colorize pip python brew osx 
+  git colorize pip python brew osx
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -116,4 +117,3 @@ alias reload-tmux="tmux source ~/.tmux.conf"
 alias gca="git commit --amend --no-edit"
 alias grom="git pull --rebase origin master"
 alias gs="git status"
-
