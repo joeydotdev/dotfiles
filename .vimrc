@@ -36,13 +36,12 @@ Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
-" Backup / Swap {
+" Backup / Swap
 set nobackup
 set nowritebackup
 set noswapfile
-" }
 
-" Color Scheme {
+" Color Scheme
 colorscheme jellybeans
 syntax on
 filetype plugin indent on
@@ -50,7 +49,6 @@ let g:jellybeans_use_term_italics = 1
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
-" }
 
 if executable('rg')
   let g:rg_derive_root='true'
@@ -109,6 +107,8 @@ let g:NERDSpaceDelims = 1
 " if hidden is not set, TextEdit might fail.
 set hidden " Some servers have issues with backup files, see #649 set nobackup set nowritebackup " Better display for messages set cmdheight=2 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
+
+filetype plugin indent on
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -189,4 +189,3 @@ fun! TrimWhitespace()
 endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
-
