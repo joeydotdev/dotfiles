@@ -9,13 +9,10 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set linespace=15
 set number relativenumber
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 
 call plug#begin('~/config/nvim/plugged')
 
@@ -33,8 +30,17 @@ Plug 'mbbill/undotree'
 Plug 'othree/yajs.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'preservim/nerdcommenter'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'Lokaltog/vim-monotone'
+Plug 'mxw/vim-jsx'
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
+
+if has("termguicolors")
+    set termguicolors
+endif
 
 " Backup / Swap
 set nobackup
@@ -42,10 +48,11 @@ set nowritebackup
 set noswapfile
 
 " Color Scheme
-colorscheme jellybeans
+set background=dark
+color base16-default-dark
+let base16colorspace=256
 syntax on
 filetype plugin indent on
-let g:jellybeans_use_term_italics = 1
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -63,6 +70,12 @@ let g:netrw_winsize = 25
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+" Split files
+nnoremap <leader>\| :vsp<CR>
+nnoremap <leader>- :sp<CR>
+
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>h :wincmd h<CR>
@@ -75,10 +88,7 @@ nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
-nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
@@ -96,12 +106,17 @@ vnoremap <C-_> :call NERDComment(0,"toggle")<CR>
 let g:NERDSpaceDelims = 1
 
 " coc config
+
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
  let g:coc_global_extensions = [
    \ 'coc-pairs',
    \ 'coc-eslint',
    \ 'coc-prettier',
    \ 'coc-json',
    \ 'coc-flow',
+   \ 'coc-tsserver',
+   \ 'coc-python',
+   \ 'coc-phpls',
    \ ]
 " from readme
 " if hidden is not set, TextEdit might fail.
@@ -172,7 +187,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Git blame
 nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -180,7 +194,6 @@ augroup mygroup
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
