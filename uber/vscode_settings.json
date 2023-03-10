@@ -1,0 +1,40 @@
+{
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.cursorBlinking": "smooth",
+  "editor.detectIndentation": true,
+  "editor.fontFamily": "Hack",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 16,
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineHeight": 28,
+  "editor.lineNumbers": "relative",
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "bazel-": true,
+    "pkg": true
+  },
+  "files.watcherExclude": {
+    "bazel-": true,
+    "pkg": true
+  },
+  "git.openRepositoryInParentFolders": "always",
+  "go.formatTool": "goimports",
+  "go.toolsEnvVars": {
+    "GO111MODULE": "off"
+  },
+  "go.useLanguageServer": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+
