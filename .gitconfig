@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+name = Joey Colon
+email = contact@joey.dev
+
+[init]
+	templatedir = ~/.git-templates
+	defaultBranch = main
+
+[include]
+	path = ~/.gitconfig.d/aliases

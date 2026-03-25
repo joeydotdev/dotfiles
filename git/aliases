@@ -1,0 +1,4 @@
+[alias]
+  gca = commit --amend --no-edit
+  grom = !git pull --rebase origin master && git pull --rebase origin main
+  gs = status
