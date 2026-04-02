@@ -34,6 +34,7 @@ fi
 
 # General aliases
 alias reload-zsh="source ~/.zshrc"
+alias gs='git status'
 
 # Auto-generate commit message function
 generate_commit_msg() {
@@ -59,4 +60,11 @@ fi
 
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"
+fi
+
+if [ -f "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc" ]; then
+  source "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
+fi
+if [ -f "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc" ]; then
+  source "/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc"
 fi
