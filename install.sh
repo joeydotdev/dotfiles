@@ -18,6 +18,7 @@ link_file() {
 
 ensure_dir "$HOME/Library/Application Support/com.mitchellh.ghostty"
 ensure_dir "$HOME/.config"
+ensure_dir "$HOME/.gitconfig.d"
 
 link_file "$ROOT_DIR/.zshrc" "$HOME/.zshrc"
 link_file "$ROOT_DIR/Brewfile" "$HOME/Brewfile"
@@ -25,6 +26,7 @@ link_file "$ROOT_DIR/ghostty/config" "$HOME/Library/Application Support/com.mitc
 link_file "$ROOT_DIR/.config/nvim" "$HOME/.config/nvim"
 link_file "$ROOT_DIR/.gitconfig" "$HOME/.gitconfig"
 link_file "$ROOT_DIR/git/aliases" "$HOME/.gitconfig.d/aliases"
+link_file "$ROOT_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
 if [ ! -f "$HOME/.zshrc.local" ]; then
   cp "$ROOT_DIR/.zshrc.local.example" "$HOME/.zshrc.local"
@@ -38,4 +40,9 @@ if command -v brew >/dev/null 2>&1; then
   brew bundle --file "$HOME/Brewfile"
 else
   echo "Homebrew not found. Install it, then run: brew bundle --file \"$HOME/Brewfile\""
+fi
+
+# Install TPM (Tmux Plugin Manager)
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
